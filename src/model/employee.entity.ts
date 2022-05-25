@@ -12,11 +12,15 @@ export class EmployeeEntity extends BaseEntity {
     @Column({ type: 'varchar', length: 300 })
     second_name: string;
 
-    @ApiProperty({example: 123, description: 'Wallet id of the person.'})
-    @Column({ type: 'int' })
-    wallet_id: number;
+    @ApiProperty({example: 'abbd-abbb-dcs', description: 'Wallet id of the person.'})
+    @Column({ type: 'varchar', length: 300 })
+    wallet_id: string;
 
     @ApiProperty({example: 123, description: 'Person organization id.'})
     @Column({ type: 'int' })
     organization_id: number;
+
+    @ApiProperty({example: 123, description: 'Person organization id.'})
+    @Column({ type: 'decimal'})
+    amount: number;
 }

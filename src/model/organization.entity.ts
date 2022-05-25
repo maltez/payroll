@@ -8,7 +8,11 @@ export class OrganizationEntity extends BaseEntity {
     @Column({ type: 'varchar', length: 300 })
     name: string;
 
-    @ApiProperty({example: 123, description: 'Wallet id of the person.'})
-    @Column({ type: 'int' })
-    wallet_id: number;
+    @ApiProperty({example: 'bcd-erd-fcd', description: 'Wallet id of the person.'})
+    @Column({ type: 'varchar', length: 300})
+    wallet_id: string;
+
+    @ApiProperty({example: 'bcd-erd-fcd', description: 'Secret id of wallet.'})
+    @Column({ type: 'varchar', length: 300})
+    wallet_secret_id: string;
 }
