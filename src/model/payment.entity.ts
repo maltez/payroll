@@ -9,10 +9,10 @@ export class PaymentEntity extends BaseEntity {
     status: string;
 
     @ApiProperty({example: 123, description: 'Wallet id of the organization.'})
-    @Column({ type: 'int' })
-    organization_wallet_id: number;
+    @Column({ type: 'varchar', length: 300 })
+    organization_wallet_id: string;
 
     @ApiProperty({example: 123, description: 'Wallet id of the person.'})
-    @Column({ type: 'int' })
-    wallet_id: number;
+    @Column({ type: 'varchar', length: 300 })
+    wallet_id: string;
 }
