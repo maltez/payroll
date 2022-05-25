@@ -8,15 +8,13 @@ Needs to installed and run docker.
 
 ```bash
 $ npm install
-
-$ npm run start:dev
 ```
 
 Enjoy!!!
 ## Running the app
 
 ```bash
-# ap and running postgresql
+# up and running postgresql
 $ ./src/scripts/dev-base.sh
 
 # apply migration
