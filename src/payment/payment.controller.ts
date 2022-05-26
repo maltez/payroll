@@ -13,12 +13,6 @@ export class PaymentController {
         return await this.serv.getAll();
     }
 
-    @Get('/key')
-    @ApiOperation({ summary: 'Get key' })
-    public async getKey() {
-        return await this.serv.getKey();
-    }
-
     @Get('/balance/:id')
     @ApiOperation({ summary: 'Get key' })
     public async getBalance(@Param() id: string) {
