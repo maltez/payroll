@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const Web3 = require('web3');
 
-const privKey  = process.env.PRIVATE_KEY // Your  key
+const privKey  = '9232773240db6e4bd4c5713f706793dfb7fd99297162accd5066dadbeb49b1e1' // Your organization key
 const web3 = new Web3('http://127.0.0.1:9545'); // Your Web3 instance
 @Injectable()
 export class PaymentService {
@@ -28,7 +28,7 @@ export class PaymentService {
     public async getBalance(id: string) {
         const balances = async () => {
             const balanceFrom = web3.utils.fromWei(
-                await web3.eth.getBalance(id),
+                await web3.eth.getBalance(id['id']),
                 'ether'
             );
 
@@ -40,6 +40,7 @@ export class PaymentService {
 
     @ApiOperation({ summary: 'Create payment' })
     public async create(@Body() create: PaymentEntity): Promise<InsertResult>  {
+        console.log(create)
         const deploy = async () => {
             const createTransaction = await web3.eth.accounts.signTransaction(
                 {
