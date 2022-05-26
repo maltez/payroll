@@ -7,10 +7,10 @@ require('dotenv').config();
 
 const Web3 = require('web3');
 
-const privKey  = process.env.PRIVATE_KEY
+const privKey  = process.env.PRIVATE_KEY // Your  key
 const addressFrom = '0xe9D3F501B082Ba426b4Fb1be6b00be64D486d4d9';
 const addressTo = '0x104BE074AD7bB0357258e9aFe9b8E0a58C551833';
-const web3 = new Web3('https://godwoken-testnet-v1.ckbapp.dev');
+const web3 = new Web3('https://godwoken-testnet-v1.ckbapp.dev'); // Your Web3 instance
 @Injectable()
 export class PaymentService {
     constructor(@InjectRepository(PaymentEntity) private readonly repo: Repository<PaymentEntity>) {
