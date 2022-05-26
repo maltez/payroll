@@ -8,9 +8,7 @@ require('dotenv').config();
 const Web3 = require('web3');
 
 const privKey  = process.env.PRIVATE_KEY // Your  key
-const addressFrom = '0xe9D3F501B082Ba426b4Fb1be6b00be64D486d4d9';
-const addressTo = '0x104BE074AD7bB0357258e9aFe9b8E0a58C551833';
-const web3 = new Web3('https://godwoken-testnet-v1.ckbapp.dev'); // Your Web3 instance
+const web3 = new Web3('http://127.0.0.1:9545'); // Your Web3 instance
 @Injectable()
 export class PaymentService {
     constructor(@InjectRepository(PaymentEntity) private readonly repo: Repository<PaymentEntity>) {
@@ -34,10 +32,7 @@ export class PaymentService {
                 'ether'
             );
 
-            console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH.`);
-
-            return `The balance of ${addressFrom} is: ${balanceFrom} ETH.`;
-
+            return balanceFrom;
         };
 
         return balances();
@@ -46,10 +41,6 @@ export class PaymentService {
     @ApiOperation({ summary: 'Create payment' })
     public async create(@Body() create: PaymentEntity): Promise<InsertResult>  {
         const deploy = async () => {
-            console.log(
-                `Attempting to make transaction from ${addressFrom} to ${addressTo}`
-            );
-
             const createTransaction = await web3.eth.accounts.signTransaction(
                 {
                     from: create.organization_wallet_id,
