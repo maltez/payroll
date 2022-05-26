@@ -1,7 +1,9 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors} from '@nestjs/common';
 import {EmployeeService} from "./employee.service";
 import {ApiOperation, ApiResponse} from "@nestjs/swagger";
 import {EmployeeEntity} from "../model/employee.entity";
+import {FileInterceptor} from "@nestjs/platform-express";
+import {diskStorage} from "multer";
 
 @Controller('employee')
 export class EmployeeController {
@@ -27,5 +29,15 @@ export class EmployeeController {
     })
     public async findOne(@Param() id: number): Promise<EmployeeEntity[]>{
         return await this.serv.findById(id);
+    }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file', {
+        storage: diskStorage({
+            destination: './uploads',
+        })
+    }))
+    async uploadFile(@UploadedFile() file: Express.Multer.File) {
+        await this.serv.createFromFile(file.filename);
     }
 }

@@ -41,6 +41,12 @@ $ npm run test:cov
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
+## Bulk upload command
+
+```bash
+$ curl -v -F "hello=word" -F "file=@package.csv" http://localhost:3000/employee/upload
+```
+
 ## Stay in touch
 
 - Author - [Nick Lototskyi](https://github.com/maltez)
