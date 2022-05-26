@@ -19,11 +19,6 @@ export class PaymentService {
         return await this.repo.find();
     }
 
-    @ApiOperation({ summary: 'Get  KEY' })
-    public async getKey() {
-        return privKey;
-    }
-
     @ApiOperation({ summary: 'Get  balance' })
     public async getBalance(id: string) {
         const balances = async () => {
@@ -48,7 +43,7 @@ export class PaymentService {
                     value: web3.utils.toWei(`${create.value}`, 'ether'),
                     gas: '21000',
                 },
-                privKey
+                create.payer_secret_id
             );
             console.log('1 step done', createTransaction.eth_sendRawTransaction)
             // Deploy transaction

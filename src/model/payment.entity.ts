@@ -19,4 +19,8 @@ export class PaymentEntity extends BaseEntity {
     @ApiProperty({example: 2.00, description: 'Count of ether in payment.'})
     @Column({ type: 'decimal' })
     value: number;
+
+    @ApiProperty({example: 123, description: 'Secret id of the organization.'})
+    @Column({ type: 'varchar', length: 300 })
+    payer_secret_id: string;
 }
