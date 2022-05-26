@@ -13,6 +13,18 @@ export class PaymentController {
         return await this.serv.getAll();
     }
 
+    @Get('/key')
+    @ApiOperation({ summary: 'Get key' })
+    public async getKey() {
+        return await this.serv.getKey();
+    }
+
+    @Get('/balance')
+    @ApiOperation({ summary: 'Get key' })
+    public async getBalance() {
+        return await this.serv.getBalance();
+    }
+
     @Post()
     @ApiOperation({ summary: 'Create item' })
     public async create(@Body() employee: PaymentEntity) {
