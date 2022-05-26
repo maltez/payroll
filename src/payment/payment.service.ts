@@ -3,11 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PaymentEntity } from "../model/payment.entity";
 import {InsertResult, Repository} from "typeorm";
 import {ApiOperation} from "@nestjs/swagger";
-require('dotenv').config();
-
 const Web3 = require('web3');
 
-const privKey  = '9232773240db6e4bd4c5713f706793dfb7fd99297162accd5066dadbeb49b1e1' // Your organization key
 const web3 = new Web3('http://127.0.0.1:9545'); // Your Web3 instance
 @Injectable()
 export class PaymentService {
