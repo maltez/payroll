@@ -19,10 +19,10 @@ export class PaymentController {
         return await this.serv.getKey();
     }
 
-    @Get('/balance')
+    @Get('/balance/:id')
     @ApiOperation({ summary: 'Get key' })
-    public async getBalance() {
-        return await this.serv.getBalance();
+    public async getBalance(@Param() id: string) {
+        return await this.serv.getBalance(id);
     }
 
     @Post()

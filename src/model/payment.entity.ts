@@ -15,4 +15,8 @@ export class PaymentEntity extends BaseEntity {
     @ApiProperty({example: 123, description: 'Wallet id of the person.'})
     @Column({ type: 'varchar', length: 300 })
     wallet_id: string;
+
+    @ApiProperty({example: 2.00, description: 'Count of ether in payment.'})
+    @Column({ type: 'decimal' })
+    value: number;
 }

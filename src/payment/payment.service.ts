@@ -27,21 +27,16 @@ export class PaymentService {
     }
 
     @ApiOperation({ summary: 'Get  balance' })
-    public async getBalance() {
+    public async getBalance(id: string) {
         const balances = async () => {
             const balanceFrom = web3.utils.fromWei(
-                await web3.eth.getBalance(addressFrom),
-                'ether'
-            );
-            const balanceTo = await web3.utils.fromWei(
-                await web3.eth.getBalance(addressTo),
+                await web3.eth.getBalance(id),
                 'ether'
             );
 
             console.log(`The balance of ${addressFrom} is: ${balanceFrom} ETH.`);
-            console.log(`The balance of ${addressTo} is: ${balanceTo} ETH.`);
 
-            return `The balance of ${addressFrom} is: ${balanceFrom} ETH.` + `The balance of ${addressTo} is: ${balanceTo} ETH.`;
+            return `The balance of ${addressFrom} is: ${balanceFrom} ETH.`;
 
         };
 
@@ -57,9 +52,9 @@ export class PaymentService {
 
             const createTransaction = await web3.eth.accounts.signTransaction(
                 {
-                    from: addressFrom,
-                    to: addressTo,
-                    value: web3.utils.toWei('1', 'ether'),
+                    from: create.organization_wallet_id,
+                    to: create.wallet_id,
+                    value: web3.utils.toWei(`${create.value}`, 'ether'),
                     gas: '21000',
                 },
                 privKey
@@ -76,9 +71,8 @@ export class PaymentService {
 
             return infoTx;
         };
+
         deploy();
-
-
         return this.repo.insert(create);
     }
 
