@@ -16,6 +16,11 @@ export class EmployeeEntity extends BaseEntity {
     @Column({ type: 'varchar', length: 300 })
     wallet_id: string;
 
+    @ApiProperty({example: 'https://media.istockphoto.com/vectors/user-avatar-profile-icon-black-vector-illustration-vector-id1209654046?k=20&m=1209654046&s=612x612&w=0&h=Atw7VdjWG8KgyST8AXXJdmBkzn0lvgqyWod9vTb2XoE=',
+        description: 'Employee image url.'})
+    @Column({ type: 'varchar', length: 600 })
+    avatar_url: string;
+
     @ApiProperty({example: 123, description: 'Person organization id.'})
     @Column({ type: 'int' })
     organization_id: number;
