@@ -30,13 +30,13 @@ export class PaymentService {
     }
 
     @ApiOperation({summary: 'Mint'})
-    public async mint() {
-
+    public async mint(@Body() address: string): Promise<InsertResult> {
+        const to = address['address']
         const NameContract = new web3.eth.Contract(contract_abi, contract_address);
-        let trans = NameContract.methods.mint(contract_address, 100 * (10 ** 18)).encodeABI();
+        let trans = NameContract.methods.mint(to, web3.utils.toWei('100', 'ether')).encodeABI();
         const createTransaction = await web3.eth.accounts.signTransaction(
             {
-                to: '0x087291774Ee2d2DbDf19Caa804ad818d78123f10',
+                to: contract_address,
                 value: 0,
                 gas: '210000',
                 data: trans,
