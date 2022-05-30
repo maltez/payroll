@@ -58,7 +58,7 @@ export class PaymentService {
         const deploy = async () => {
             const NameContract = new web3.eth.Contract(contract_abi, contract_address);
 
-            let trans = NameContract.methods.transfer(create.wallet_id, web3.utils.toWei(`${create.value}`, 'ether')).encodeABI();
+            const trans = NameContract.methods.transfer(create.wallet_id, web3.utils.toWei(`${create.value}`, 'ether')).encodeABI();
             const createTransaction = await web3.eth.accounts.signTransaction(
                 {
                     to: contract_address,
