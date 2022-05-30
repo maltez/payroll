@@ -25,7 +25,7 @@ export class PaymentService {
     @ApiOperation({summary: 'Get  balance'})
     public async getBalance(id: string) {
 
-        const balance = await colleteralToken.methods.balanceOf(id).call();
+        const balance = await colleteralToken.methods.balanceOf(id['id']).call();
 
         console.log(balance)
     }
