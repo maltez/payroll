@@ -19,6 +19,12 @@ export class PaymentController {
         return await this.serv.getBalance(id);
     }
 
+    @Get('/mint')
+    @ApiOperation({ summary: 'Get key' })
+    public async mint() {
+        return await this.serv.mint();
+    }
+
     @Post()
     @ApiOperation({ summary: 'Create item' })
     public async create(@Body() employee: PaymentEntity) {
