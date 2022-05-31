@@ -7,11 +7,11 @@ import {ApiOperation} from "@nestjs/swagger";
 const Web3 = require('web3');
 const contract_abi = require('../../ABI/abi.json');
 
-const contract_address = '0x087291774ee2d2dbdf19caa804ad818d78123f10';
+const contract_address = '0xe517d5CCa1284EB1AF5bBa0C02B272F5a28fe491';
 const web3 = new Web3('https://godwoken-testnet-v1.ckbapp.dev'); // Your Web3 instance
 
 const colleteralToken = new web3.eth.Contract(contract_abi, contract_address);
-
+const private_key = process.env.PRIVATE_KEY
 @Injectable()
 export class PaymentService {
     constructor(@InjectRepository(PaymentEntity) private readonly repo: Repository<PaymentEntity>) {
@@ -39,7 +39,7 @@ export class PaymentService {
                 data: trans,
                 gasPrice: 10 ** 9
             },
-            '0x97d2e58fbb30d9a004683eef68f8ec26cacb19e39bd4331a2508ab5c36e70b0b'
+            private_key
         );
 
         const balance = await colleteralToken.methods.balanceOf(contract_address).call();
